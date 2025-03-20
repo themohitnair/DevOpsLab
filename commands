@@ -1,0 +1,288 @@
+6b@iselab2:~$ gi
+gi: command not found
+6b@iselab2:~$ git
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           [--super-prefix=<path>] [--config-env=<name>=<envvar>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone     Clone a repository into a new directory
+   init      Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add       Add file contents to the index
+   mv        Move or rename a file, a directory, or a symlink
+   restore   Restore working tree files
+   rm        Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect    Use binary search to find the commit that introduced a bug
+   diff      Show changes between commits, commit and working tree, etc
+   grep      Print lines matching a pattern
+   log       Show commit logs
+   show      Show various types of objects
+   status    Show the working tree status
+
+grow, mark and tweak your common history
+   branch    List, create, or delete branches
+   commit    Record changes to the repository
+   merge     Join two or more development histories together
+   rebase    Reapply commits on top of another base tip
+   reset     Reset current HEAD to the specified state
+   switch    Switch branches
+   tag       Create, list, delete or verify a tag object signed with GPG
+
+collaborate (see also: git help workflows)
+   fetch     Download objects and refs from another repository
+   pull      Fetch from and integrate with another repository or a local branch
+   push      Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+See 'git help git' for an overview of the system.
+6b@iselab2:~$ git --version
+git version 2.34.1
+6b@iselab2:~$ mkdir sample
+6b@iselab2:~$ cd sample
+6b@iselab2:~/sample$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /home/6b/sample/.git/
+6b@iselab2:~/sample$ gedit a.txt
+6b@iselab2:~/sample$ gedit b.txt
+6b@iselab2:~/sample$ gedit c.txt
+6b@iselab2:~/sample$ git add .
+6b@iselab2:~/sample$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   a.txt
+	new file:   b.txt
+	new file:   c.txt
+
+6b@iselab2:~/sample$ git rm --cached .
+fatal: not removing '.' recursively without -r
+6b@iselab2:~/sample$ git rm -r  --cached .
+rm 'a.txt'
+rm 'b.txt'
+rm 'c.txt'
+6b@iselab2:~/sample$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	a.txt
+	b.txt
+	c.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+6b@iselab2:~/sample$ git add a.tt
+fatal: pathspec 'a.tt' did not match any files
+6b@iselab2:~/sample$ git add a.txt
+6b@iselab2:~/sample$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   a.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	b.txt
+	c.txt
+
+6b@iselab2:~/sample$ git commit -m"Added a.txt to the repository"
+[master (root-commit) 098e476] Added a.txt to the repository
+ 1 file changed, 1 insertion(+)
+ create mode 100644 a.txt
+6b@iselab2:~/sample$ git add .
+6b@iselab2:~/sample$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   b.txt
+	new file:   c.txt
+
+6b@iselab2:~/sample$ git commit -m"Added b.txt and c.txt"
+[master bc09750] Added b.txt and c.txt
+ 2 files changed, 2 insertions(+)
+ create mode 100644 b.txt
+ create mode 100644 c.txt
+6b@iselab2:~/sample$ git config --global user.email user.name
+6b@iselab2:~/sample$ git config --global user.email
+user.name
+6b@iselab2:~/sample$ git config --global user.email
+user.name
+6b@iselab2:~/sample$ git config --global --unset user.email
+6b@iselab2:~/sample$ git config --global user.email
+6b@iselab2:~/sample$ git config --global user.name
+abc
+6b@iselab2:~/sample$ git config --global --unset user.name
+6b@iselab2:~/sample$ git config --global user.email themohitnair@protonmail.com
+6b@iselab2:~/sample$ git config --global user.name themohitnair
+6b@iselab2:~/sample$ git remote add origin "git@github.com:themohitnair/DevOpsLab.git"
+6b@iselab2:~/sample$ git pull origin main
+The authenticity of host 'github.com (20.207.73.82)' can't be established.
+ED25519 key fingerprint is SHA256:+DiY3wvvV6TuJJhbpZisF/zLDA0zPMSvHdkr4UvCOqU.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'github.com' (ED25519) to the list of known hosts.
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+6b@iselab2:~/sample$ ssh-keygen -t ed25519 -f ~/.ssh/temp_github_key -C "your_email@example.com"
+Generating public/private ed25519 key pair.
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/6b/.ssh/temp_github_key
+Your public key has been saved in /home/6b/.ssh/temp_github_key.pub
+The key fingerprint is:
+SHA256:r5NusnfoGljBQAQjaNPi25jOr6aNLbkpJEP9ReUbKkU your_email@example.com
+The key's randomart image is:
++--[ED25519 256]--+
+|o +++  E..       |
+|.= o o...        |
+|o +   +. o       |
+| o .  .o. o      |
+|. = ..o.S.       |
+|o= . +.  .       |
+|=o  . .  o.      |
+|+O    ..*..      |
+|O+=.  oO+o       |
++----[SHA256]-----+
+6b@iselab2:~/sample$ ssh-keygen -t ed25519 -f ~/.ssh/temp_github_key -C "themohitnair@protonmail.com"
+Generating public/private ed25519 key pair.
+/home/6b/.ssh/temp_github_key already exists.
+Overwrite (y/n)? y
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/6b/.ssh/temp_github_key
+Your public key has been saved in /home/6b/.ssh/temp_github_key.pub
+The key fingerprint is:
+SHA256:apmvXeZef6/CB0SJLING2jNEOqzdEMJKgaeJUG8ZjmA themohitnair@protonmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|oE+ oo+. . . .   |
+|+oo* Oo o o o    |
+|+=. @.+  o .     |
+|=  + + o    .    |
+|  . . . S  .     |
+|       +    .    |
+|      =   o...   |
+|     . o + .o.. .|
+|      ..o.o  oooo|
++----[SHA256]-----+
+6b@iselab2:~/sample$ eval "$(ssh-agent -s)"
+Agent pid 10206
+6b@iselab2:~/sample$ ssh-add ~/.ssh/temp_github_key
+Enter passphrase for /home/6b/.ssh/temp_github_key: 
+Identity added: /home/6b/.ssh/temp_github_key (themohitnair@protonmail.com)
+6b@iselab2:~/sample$ cat ~/.ssh/temp_github_key.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDT+3NPByF1fIhvRKxJqTe7UFgNFaCN8BVUHNOuxgcvl themohitnair@protonmail.com
+6b@iselab2:~/sample$ ssh -T git@github.com
+git@github.com: Permission denied (publickey).
+6b@iselab2:~/sample$ ssh -T git@github.com
+Hi themohitnair! You've successfully authenticated, but GitHub does not provide shell access.
+6b@iselab2:~/sample$ git pull origin main
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 891 bytes | 891.00 KiB/s, done.
+From github.com:themohitnair/DevOpsLab
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+6b@iselab2:~/sample$ git pull origin master
+fatal: couldn't find remote ref master
+6b@iselab2:~/sample$ git pull origin master
+fatal: couldn't find remote ref master
+6b@iselab2:~/sample$ git branch -m master main
+6b@iselab2:~/sample$ git pull origin main
+From github.com:themohitnair/DevOpsLab
+ * branch            main       -> FETCH_HEAD
+hint: You have divergent branches and need to specify how to reconcile them.
+hint: You can do so by running one of the following commands sometime before
+hint: your next pull:
+hint: 
+hint:   git config pull.rebase false  # merge (the default strategy)
+hint:   git config pull.rebase true   # rebase
+hint:   git config pull.ff only       # fast-forward only
+hint: 
+hint: You can replace "git config" with "git config --global" to set a default
+hint: preference for all repositories. You can also pass --rebase, --no-rebase,
+hint: or --ff-only on the command line to override the configured default per
+hint: invocation.
+fatal: Need to specify how to reconcile divergent branches.
+6b@iselab2:~/sample$ git config pull.rebase false
+6b@iselab2:~/sample$ git config pull.rebase false
+6b@iselab2:~/sample$ git status
+On branch main
+nothing to commit, working tree clean
+6b@iselab2:~/sample$ git branch -vv
+* main bc09750 Added b.txt and c.txt
+6b@iselab2:~/sample$ git branch --set-upstream-to=origin/main main
+Branch 'main' set up to track remote branch 'main' from 'origin'.
+6b@iselab2:~/sample$ git pull origin main
+From github.com:themohitnair/DevOpsLab
+ * branch            main       -> FETCH_HEAD
+fatal: refusing to merge unrelated histories
+6b@iselab2:~/sample$ git pull origin main --allow-unrelated-histories
+From github.com:themohitnair/DevOpsLab
+ * branch            main       -> FETCH_HEAD
+Merge made by the 'ort' strategy.
+ README.md | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 README.md
+6b@iselab2:~/sample$ git pull origin main --allow-unrelated-histories
+From github.com:themohitnair/DevOpsLab
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+6b@iselab2:~/sample$ la
+a.txt  b.txt  c.txt  .git  README.md
+6b@iselab2:~/sample$ ls
+a.txt  b.txt  c.txt  README.md
+6b@iselab2:~/sample$ git push origin main
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (9/9), 899 bytes | 899.00 KiB/s, done.
+Total 9 (delta 0), reused 0 (delta 0), pack-reused 0
+To github.com:themohitnair/DevOpsLab.git
+   0210844..500446a  main -> main
+
